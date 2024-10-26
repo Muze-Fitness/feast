@@ -909,7 +909,7 @@ websocket-client==1.8.0
     #   kubernetes
 websockets==13.0.1
     # via uvicorn
-werkzeug==3.0.4
+werkzeug==3.0.6
     # via moto
 wheel==0.44.0
     # via
