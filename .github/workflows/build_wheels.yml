@@ -62,7 +62,7 @@ jobs:
           python-version: "3.12"
           architecture: x64
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
           node-version-file: './ui/.nvmrc'
           registry-url: 'https://registry.npmjs.org'
@@ -72,7 +72,7 @@ jobs:
         run: |
           python -m pip install build
           python -m build --wheel --outdir wheelhouse/
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v3
         with:
           name: wheels
           path: ./wheelhouse/*.whl
@@ -89,7 +89,7 @@ jobs:
           python-version: "3.12"
           architecture: x64
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
           node-version-file: './ui/.nvmrc'
           registry-url: 'https://registry.npmjs.org'
@@ -104,9 +104,9 @@ jobs:
       - name: Build
         run: |
           python3 setup.py sdist
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v3
         with:
-          name: sdist
+          name: wheels
           path: dist/*
 
   # We add this step so the docker images can be built as part of the pre-release verification steps.
