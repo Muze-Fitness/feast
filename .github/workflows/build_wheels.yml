@@ -106,7 +106,7 @@ jobs:
           python3 setup.py sdist
       - uses: actions/upload-artifact@v4
         with:
-          name: wheels
+          name: sdist
           path: dist/*
 
   # We add this step so the docker images can be built as part of the pre-release verification steps.
