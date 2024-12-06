@@ -21,6 +21,9 @@ jobs:
         uses: actions/checkout@v4
         with:
           persist-credentials: false
+          fetch-depth: 0
+      - name: Print Git Tags
+        run: git tag -l
       - name: Get release version
         id: get_release_version
         run: echo ::set-output name=release_version::${GITHUB_REF#refs/*/}
@@ -68,6 +71,8 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: Build UI
         run: make build-ui
+      - name: Print Package Version
+        run: python setup.py --version
       - name: Build wheels
         run: |
           python -m pip install build
