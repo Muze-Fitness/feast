@@ -22,8 +22,6 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
-      - name: Print Git Tags
-        run: git tag -l
       - name: Get release version
         id: get_release_version
         run: echo ::set-output name=release_version::${GITHUB_REF#refs/*/}
@@ -69,12 +67,24 @@ jobs:
         with:
           node-version-file: './ui/.nvmrc'
           registry-url: 'https://registry.npmjs.org'
-      - name: Build UI
-        run: make build-ui
+      - name: Debug Tags and Commit
+        run: |
+          echo "Tags in the repository:"
+          git tag -l
+          echo "Tags pointing to HEAD:"
+          git tag --points-at HEAD
+      - name: Debug Working Directory
+        run: |
+          echo "Working directory status:"
+          git status
+          echo "Untracked files:"
+          git ls-files --others --exclude-standard
       - name: Build wheels
         run: |
           python -m pip install build
           python -m build --wheel --outdir wheelhouse/
+      - name: Build UI
+        run: make build-ui
       - uses: actions/upload-artifact@v3
         with:
           name: wheels
