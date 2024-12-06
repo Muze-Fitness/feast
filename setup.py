@@ -23,8 +23,7 @@ from pathlib import Path
 
 from setuptools import find_packages, setup, Command
 
-NAME = "zing_feast"
-VERSION = "0.1.0"
+NAME = "feast"
 DESCRIPTION = "Python SDK for Feast"
 URL = "https://github.com/feast-dev/feast"
 AUTHOR = "Feast"
@@ -313,7 +312,6 @@ class BuildGoProtosCommand(Command):
 
 setup(
     name=NAME,
-    version=VERSION,
     author=AUTHOR,
     description=DESCRIPTION,
     long_description=LONG_DESCRIPTION,
