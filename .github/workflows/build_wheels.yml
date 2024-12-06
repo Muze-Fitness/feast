@@ -71,8 +71,6 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: Build UI
         run: make build-ui
-      - name: Print Package Version
-        run: python setup.py --version
       - name: Build wheels
         run: |
           python -m pip install build
@@ -106,6 +104,8 @@ jobs:
           git status
           git restore go.mod go.sum
           git restore sdk/python/feast/ui/yarn.lock
+      - name: Print Package Version
+        run: python setup.py --version
       - name: Build
         run: |
           python3 setup.py sdist
