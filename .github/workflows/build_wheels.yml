@@ -54,13 +54,17 @@ jobs:
         run: |
           if [[ -n "${{ inputs.highest_semver_tag }}" ]]; then
             echo "Using provided highest semver version: ${{ inputs.highest_semver_tag }}"
-            echo "::set-output name=highest_semver_tag::${{ inputs.highest_semver_tag }}"
+            echo "highest_semver_tag=${{ inputs.highest_semver_tag }}" >> $GITHUB_OUTPUT
           else
             echo "No release version provided. Falling back to infra/scripts/setup-common-functions.sh."
             source infra/scripts/setup-common-functions.sh
-            SEMVER_REGEX='^v[0-9]+\.[0-9]+\.[0-9]+(-([0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*))?$'
-            if echo "${RELEASE_VERSION}" | grep -P "$SEMVER_REGEX" &>/dev/null ; then
-              echo ::set-output name=highest_semver_tag::$(get_tag_release -m)
+            SEMVER_REGEX='^v[0-9]+\.[0-9]+\.[0-9]+\+zing\.\d+$'
+            if echo "${RELEASE_VERSION}" | grep -P "$SEMVER_REGEX" &>/dev/null; then
+              echo "Matched strict zing tag: ${RELEASE_VERSION}"
+              echo "highest_semver_tag=$(get_tag_release -m)" >> $GITHUB_OUTPUT
+            else
+              echo "Error: Tag ${RELEASE_VERSION} does not match the required format (e.g., v0.42.0+zing.1)."
+              exit 1
             fi
           fi
       - name: Check output
@@ -125,7 +129,7 @@ jobs:
           git restore sdk/python/feast/ui/yarn.lock
       - name: Build
         run: |
-          python3 setup.py sdist
+          python -m build --sdist --outdir dist/
           make build-ui
       - uses: actions/upload-artifact@v4
         with:

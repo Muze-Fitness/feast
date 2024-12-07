@@ -1,14 +1,20 @@
 import os
 import uuid
+import typing
 from pathlib import Path
 from tempfile import TemporaryFile
 from urllib.parse import urlparse
+
+from pydantic import Field, StrictStr
 
 from feast.errors import S3RegistryBucketForbiddenAccess, S3RegistryBucketNotExist
 from feast.infra.registry.registry_store import RegistryStore
 from feast.protos.feast.core.Registry_pb2 import Registry as RegistryProto
 from feast.repo_config import RegistryConfig
 from feast.utils import _utc_now
+
+if typing.TYPE_CHECKING:
+    from mypy_boto3_s3 import S3Client
 
 try:
     import boto3
@@ -18,17 +24,20 @@ except ImportError as e:
     raise FeastExtrasDependencyImportError("aws", str(e))
 
 
+class S3RegistryConfig(RegistryConfig):
+    registry_type: StrictStr = Field(default="s3", const=True)
+    s3_client: S3Client
+
+
 class S3RegistryStore(RegistryStore):
-    def __init__(self, registry_config: RegistryConfig, repo_path: Path):
+    def __init__(self, registry_config: S3RegistryConfig, repo_path: Path):
         uri = registry_config.path
         self._uri = urlparse(uri)
         self._bucket = self._uri.hostname
         self._key = self._uri.path.lstrip("/")
         self._boto_extra_args = registry_config.s3_additional_kwargs or {}
 
-        self.s3_client = boto3.resource(
-            "s3", endpoint_url=os.environ.get("FEAST_S3_ENDPOINT_URL")
-        )
+        self.s3_client = registry_config.s3_client
 
     def get_registry_proto(self):
         file_obj = TemporaryFile()

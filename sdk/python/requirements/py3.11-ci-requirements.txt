@@ -71,12 +71,16 @@ boto3==1.35.36
     # via
     #   feast (setup.py)
     #   moto
+boto3-stubs[essential, s3]==1.35.76
+    # via feast (setup.py)
 botocore==1.35.36
     # via
     #   aiobotocore
     #   boto3
     #   moto
     #   s3transfer
+botocore-stubs==1.35.76
+    # via boto3-stubs
 build==1.2.2.post1
     # via
     #   feast (setup.py)
@@ -126,7 +130,7 @@ comm==0.2.2
     #   ipywidgets
 couchbase==4.3.2
     # via feast (setup.py)
-coverage[toml]==7.6.8
+coverage[toml]==7.6.9
     # via pytest-cov
 cryptography==42.0.8
     # via
@@ -303,7 +307,7 @@ httpcore==1.0.7
     # via httpx
 httptools==0.6.4
     # via uvicorn
-httpx[http2]==0.28.0
+httpx[http2]==0.28.1
     # via
     #   feast (setup.py)
     #   jupyterlab
@@ -467,6 +471,20 @@ mypy==1.11.2
     # via
     #   feast (setup.py)
     #   sqlalchemy
+mypy-boto3-cloudformation==1.35.64
+    # via boto3-stubs
+mypy-boto3-dynamodb==1.35.74
+    # via boto3-stubs
+mypy-boto3-ec2==1.35.72
+    # via boto3-stubs
+mypy-boto3-lambda==1.35.68
+    # via boto3-stubs
+mypy-boto3-rds==1.35.72
+    # via boto3-stubs
+mypy-boto3-s3==1.35.76
+    # via boto3-stubs
+mypy-boto3-sqs==1.35.0
+    # via boto3-stubs
 mypy-extensions==1.0.0
     # via mypy
 mypy-protobuf==3.3.0
@@ -883,7 +901,7 @@ substrait==0.23.0
     # via ibis-substrait
 tabulate==0.9.0
     # via feast (setup.py)
-tenacity==8.5.0
+tenacity==9.0.0
     # via feast (setup.py)
 terminado==0.18.1
     # via
@@ -936,6 +954,8 @@ trino==0.330.0
     # via feast (setup.py)
 typeguard==4.4.1
     # via feast (setup.py)
+types-awscrt==0.23.3
+    # via botocore-stubs
 types-cffi==1.16.0.20240331
     # via types-pyopenssl
 types-protobuf==3.19.22
@@ -958,11 +978,13 @@ types-redis==4.6.0.20241004
     # via feast (setup.py)
 types-requests==2.30.0.0
     # via feast (setup.py)
+types-s3transfer==0.10.4
+    # via boto3-stubs
 types-setuptools==75.6.0.20241126
     # via
     #   feast (setup.py)
     #   types-cffi
-types-tabulate==0.9.0.20240106
+types-tabulate==0.9.0.20241207
     # via feast (setup.py)
 types-urllib3==1.26.25.14
     # via types-requests
@@ -972,12 +994,20 @@ typing-extensions==4.12.2
     #   azure-core
     #   azure-identity
     #   azure-storage-blob
+    #   boto3-stubs
     #   fastapi
     #   great-expectations
     #   ibis-framework
     #   ipython
     #   jwcrypto
     #   mypy
+    #   mypy-boto3-cloudformation
+    #   mypy-boto3-dynamodb
+    #   mypy-boto3-ec2
+    #   mypy-boto3-lambda
+    #   mypy-boto3-rds
+    #   mypy-boto3-s3
+    #   mypy-boto3-sqs
     #   psycopg
     #   psycopg-pool
     #   pydantic
