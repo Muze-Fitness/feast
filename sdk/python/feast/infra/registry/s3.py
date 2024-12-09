@@ -14,7 +14,7 @@ from feast.repo_config import RegistryConfig
 from feast.utils import _utc_now
 
 if typing.TYPE_CHECKING:
-    from mypy_boto3_s3 import S3Client
+    from mypy_boto3_s3 import S3ServiceResource
 
 try:
     import boto3
@@ -25,8 +25,8 @@ except ImportError as e:
 
 
 class S3RegistryConfig(RegistryConfig):
-    registry_type: StrictStr = Field(default="s3", const=True)
-    s3_client: S3Client
+    registry_type: StrictStr = "s3"
+    s3_client: S3ServiceResource
 
 
 class S3RegistryStore(RegistryStore):
