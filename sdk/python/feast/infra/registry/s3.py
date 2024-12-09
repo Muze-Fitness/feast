@@ -85,5 +85,5 @@ class S3RegistryStore(RegistryStore):
         file_obj.write(registry_proto.SerializeToString())
         file_obj.seek(0)
         self.s3_client.Bucket(self._bucket).put_object(
-            Body=file_obj, Key=self._key, **self._boto_extra_args
+            Body=file_obj, Key=self._key, **self._boto_extra_args  # type: ignore
         )
