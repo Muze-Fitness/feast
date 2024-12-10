@@ -1,8 +1,8 @@
 # This module generates dummy data to be used for tests and examples.
-import itertools
 from datetime import timedelta, timezone
 from enum import Enum
 from zoneinfo import ZoneInfo
+import itertools
 
 import numpy as np
 import pandas as pd
