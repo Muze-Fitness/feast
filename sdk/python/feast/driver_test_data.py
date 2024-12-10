@@ -1,14 +1,15 @@
 # This module generates dummy data to be used for tests and examples.
+import itertools
 from datetime import timedelta, timezone
 from enum import Enum
-from zoneinfo import ZoneInfo
-import itertools
 
 import numpy as np
 import pandas as pd
+from zoneinfo import ZoneInfo
 
-from feast.infra.offline_stores.offline_utils import \
-    DEFAULT_ENTITY_DF_EVENT_TIMESTAMP_COL
+from feast.infra.offline_stores.offline_utils import (
+    DEFAULT_ENTITY_DF_EVENT_TIMESTAMP_COL,
+)
 
 
 class EventTimestampType(Enum):

@@ -1,10 +1,10 @@
 import importlib.util
-import typing
 import uuid
 from pathlib import Path
 from tempfile import TemporaryFile
 from urllib.parse import urlparse
 
+from mypy_boto3_s3 import S3ServiceResource
 from pydantic import StrictStr
 
 from feast.errors import (
@@ -17,9 +17,6 @@ from feast.infra.registry.registry_store import RegistryStore
 from feast.protos.feast.core.Registry_pb2 import Registry as RegistryProto
 from feast.repo_config import RegistryConfig
 from feast.utils import _utc_now
-
-if typing.TYPE_CHECKING:
-    from mypy_boto3_s3 import S3ServiceResource
 
 if importlib.util.find_spec("boto3") is None:
     raise FeastExtrasDependencyImportError(
