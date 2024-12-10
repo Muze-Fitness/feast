@@ -1,13 +1,18 @@
-import os
-import uuid
+import importlib.util
 import typing
+import uuid
 from pathlib import Path
 from tempfile import TemporaryFile
 from urllib.parse import urlparse
 
-from pydantic import Field, StrictStr
+from pydantic import StrictStr
 
-from feast.errors import S3RegistryBucketForbiddenAccess, S3RegistryBucketNotExist, S3RegistryPathInvalid
+from feast.errors import (
+    FeastExtrasDependencyImportError,
+    S3RegistryBucketForbiddenAccess,
+    S3RegistryBucketNotExist,
+    S3RegistryPathInvalid,
+)
 from feast.infra.registry.registry_store import RegistryStore
 from feast.protos.feast.core.Registry_pb2 import Registry as RegistryProto
 from feast.repo_config import RegistryConfig
@@ -16,12 +21,10 @@ from feast.utils import _utc_now
 if typing.TYPE_CHECKING:
     from mypy_boto3_s3 import S3ServiceResource
 
-try:
-    import boto3
-except ImportError as e:
-    from feast.errors import FeastExtrasDependencyImportError
-
-    raise FeastExtrasDependencyImportError("aws", str(e))
+if importlib.util.find_spec("boto3") is None:
+    raise FeastExtrasDependencyImportError(
+        "aws", "boto3 is required to use S3 registry store"
+    )
 
 
 class S3RegistryConfig(RegistryConfig):
@@ -88,5 +91,7 @@ class S3RegistryStore(RegistryStore):
         file_obj.write(registry_proto.SerializeToString())
         file_obj.seek(0)
         self.s3_client.Bucket(self._bucket).put_object(
-            Body=file_obj, Key=self._key, **self._boto_extra_args  # type: ignore
+            Body=file_obj,
+            Key=self._key,
+            **self._boto_extra_args,  # type: ignore
         )
