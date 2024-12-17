@@ -17,15 +17,11 @@ from feast.types import Array, String
 
 @pytest.fixture(params=["s3", "s3gov"])
 def retrieval_job(request):
+    snowflake_connection = MagicMock()
     offline_store_config = SnowflakeOfflineStoreConfig(
         type="snowflake.offline",
-        account="snow",
-        user="snow",
-        password="snow",
-        role="snow",
-        warehouse="snow",
-        database="FEAST",
-        schema="OFFLINE",
+        snowflake_connection=snowflake_connection,
+        temp_intermediate_schema="OFFLINE",
         storage_integration_name="FEAST_S3",
         blob_export_location=f"{request.param}://feast-snowflake-offload/export",
     )
