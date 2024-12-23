@@ -245,7 +245,7 @@ with open(README_FILE, "r", encoding="utf8") as f:
 # https://github.com/pypa/setuptools_scm/blob/2a1b46d38fb2b8aeac09853e660bcd0d7c1bc7be/src/setuptools_scm/config.py#L9
 # we have also added a strict zing suffix requirement to the tag version
 TAG_REGEX = re.compile(
-    r"^(?:[\/\w-]+)?(?P<version>[vV]?\d+(?:\.\d+){0,2}\+zing\.\d+)$"
+    r"^(?:[\/\w-]+)?(?P<version>[vV]?\d+(?:\.\d+){0,2}\-zing\.\d+)$"
 )
 
 # Only set use_scm_version if git executable exists (setting this variable causes pip to use git under the hood)
