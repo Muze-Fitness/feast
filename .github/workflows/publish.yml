@@ -13,10 +13,6 @@ permissions:
   id-token: write
   contents: read
 
-permissions:
-  id-token: write
-  contents: read
-
 jobs:
   get-version:
     runs-on:  ubuntu-latest
