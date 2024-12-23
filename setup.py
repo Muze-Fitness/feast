@@ -248,16 +248,12 @@ TAG_REGEX = re.compile(
     r"^(?:[\/\w-]+)?(?P<version>[vV]?\d+(?:\.\d+){0,2}\+zing\.\d+)$"
 )
 
-# Only set use_scm_version if git executable exists (setting this variable causes pip to use git under the hood)
-if shutil.which("git"):
-    use_scm_version = {
-        "root": ".",
-        "relative_to": __file__,
-        "tag_regex": TAG_REGEX,
-        "local_scheme": "no-local-version",
-    }
-else:
-    use_scm_version = None
+use_scm_version = {
+    "root": ".",
+    "relative_to": __file__,
+    "tag_regex": TAG_REGEX,
+    "local_scheme": "no-local-version",
+}
 
 PYTHON_CODE_PREFIX = "sdk/python"
 
