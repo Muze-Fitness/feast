@@ -16,7 +16,7 @@ certifi==2024.12.14
     # via requests
 charset-normalizer==3.4.0
     # via requests
-click==8.1.7
+click==8.1.8
     # via
     #   feast (setup.py)
     #   dask
@@ -35,7 +35,7 @@ dill==0.3.9
     # via feast (setup.py)
 fastapi==0.115.6
     # via feast (setup.py)
-fsspec==2024.10.0
+fsspec==2024.12.0
     # via dask
 gunicorn==23.0.0
     # via
@@ -51,7 +51,7 @@ idna==3.10
     #   requests
 importlib-metadata==8.5.0
     # via dask
-jinja2==3.1.4
+jinja2==3.1.5
     # via feast (setup.py)
 jsonschema==4.23.0
     # via feast (setup.py)
@@ -63,7 +63,7 @@ markupsafe==3.0.2
     # via jinja2
 mmh3==5.0.1
     # via feast (setup.py)
-mypy==1.13.0
+mypy==1.14.0
     # via sqlalchemy
 mypy-extensions==1.0.0
     # via mypy
@@ -85,19 +85,19 @@ partd==1.4.2
     # via dask
 prometheus-client==0.21.1
     # via feast (setup.py)
-protobuf==5.29.1
+protobuf==5.29.2
     # via feast (setup.py)
-psutil==6.1.0
+psutil==6.1.1
     # via feast (setup.py)
 pyarrow==18.1.0
     # via
     #   feast (setup.py)
     #   dask-expr
-pydantic==2.10.3
+pydantic==2.10.4
     # via
     #   feast (setup.py)
     #   fastapi
-pydantic-core==2.27.1
+pydantic-core==2.27.2
     # via pydantic
 pygments==2.18.0
     # via feast (setup.py)
@@ -157,7 +157,7 @@ typing-extensions==4.12.2
     #   typeguard
 tzdata==2024.2
     # via pandas
-urllib3==2.2.3
+urllib3==2.3.0
     # via requests
 uvicorn[standard]==0.34.0
     # via
