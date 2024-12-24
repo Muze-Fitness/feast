@@ -204,7 +204,7 @@ jobs:
           VERSION_REGEX='[0-9]+\.[0-9]+\.[0-9]+\+zing\.[0-9]+'
           VERSION=$(echo $VERSION_OUTPUT | grep -oE "$VERSION_REGEX")
           echo "Installed Feast Version: $VERSION and using Feast Version: $VERSION_WITHOUT_PREFIX"
-          if  [ -n "$OUTPUT" ] && [ "$VERSION" = "$VERSION_WITHOUT_PREFIX" ]; then
+          if [ "$VERSION" = "$VERSION_WITHOUT_PREFIX" ]; then
             echo "Correct Feast Version Installed"
           else
             echo "$VERSION_OUTPUT from installed wheel is not in the correct format or doesn't have the right version $VERSION."
