@@ -58,7 +58,7 @@ jobs:
           else
             echo "No release version provided. Falling back to infra/scripts/setup-common-functions.sh."
             source infra/scripts/setup-common-functions.sh
-            SEMVER_REGEX='^v[0-9]+\.[0-9]+\.[0-9]+\+zing\.\d+$'
+            SEMVER_REGEX='^v[0-9]+\.[0-9]+\.[0-9]+\+zing\.[0-9]+$'
             if echo "${RELEASE_VERSION}" | grep -P "$SEMVER_REGEX" &>/dev/null; then
               echo "Matched strict zing tag: ${RELEASE_VERSION}"
               echo "highest_semver_tag=$(get_tag_release -m)" >> $GITHUB_OUTPUT
@@ -196,14 +196,14 @@ jobs:
       - name: Validate Feast Version
         run: |
           feast version
+          echo "Version without prefix: $VERSION_WITHOUT_PREFIX"
           if ! VERSION_OUTPUT=$(feast version); then
             echo "Error: Failed to get Feast version."
             exit 1
           fi
-          VERSION_REGEX='[0-9]+\.[0-9]+\.[0-9]+\+zing\.\d+'
+          VERSION_REGEX='[0-9]+\.[0-9]+\.[0-9]+\+zing\.[0-9]+'
           OUTPUT_REGEX='^Feast SDK Version: "$VERSION_REGEX"$'
           VERSION=$(echo $VERSION_OUTPUT | grep -oE "$VERSION_REGEX")
-          OUTPUT=$(echo $VERSION_OUTPUT | grep -E "$REGEX")
           echo "Installed Feast Version: $VERSION and using Feast Version: $VERSION_WITHOUT_PREFIX"
           if  [ -n "$OUTPUT" ] && [ "$VERSION" = "$VERSION_WITHOUT_PREFIX" ]; then
             echo "Correct Feast Version Installed"
