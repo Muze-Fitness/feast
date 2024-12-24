@@ -97,7 +97,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: Build wheels
         run: |
-          python -m pip install build==1.2.2.post1
+          python -m pip install build
           python -m build --wheel --outdir wheelhouse/
       - name: Build UI
         run: make build-ui
@@ -133,7 +133,7 @@ jobs:
           git restore sdk/python/feast/ui/yarn.lock
       - name: Build
         run: |
-          python -m pip install build==1.2.2.post1
+          python -m pip install build
           python -m build --sdist --outdir dist/
           make build-ui
       - uses: actions/upload-artifact@v4

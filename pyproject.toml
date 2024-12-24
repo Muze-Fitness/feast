@@ -8,23 +8,25 @@ requires = [
 ]
 
 [tool.setuptools_scm]
+tag_regex = "^(?:[\\/\\w-]+)?(?P<version>[vV]?\\d+(?:\\.\\d+){0,2}\\+zing\\.\\d+)$"
+local_scheme = "no-local-version"
 # Including this section is comparable to supplying use_scm_version=True in setup.py.
 
 [tool.ruff]
-line-length = 88
+line-length = 120
 target-version = "py39"
 include = ["*.py", "*.pyi"]
 
 [tool.ruff.format]
 # exclude a few common directories in the root of the project
-exclude = [ 
-  ".eggs", 
-  ".git", 
-  ".hg", 
+exclude = [
+  ".eggs",
+  ".git",
+  ".hg",
   ".mypy_cache",
-  ".tox", 
-  ".venv", 
-  "_build", 
+  ".tox",
+  ".venv",
+  "_build",
   "buck-out",
   "build",
   "dist",
