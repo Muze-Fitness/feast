@@ -846,7 +846,7 @@ WITH "entity_dataframe" AS (
 SELECT "{{ final_output_feature_names | join('", "')}}"
 FROM "entity_dataframe"
 {% for featureview in featureviews %}
-INNER JOIN (
+LEFT JOIN (
     SELECT
         "{{featureview.name}}__entity_row_unique_id"
         {% for feature in featureview.features %}

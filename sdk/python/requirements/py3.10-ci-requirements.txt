@@ -65,7 +65,7 @@ babel==2.16.0
     #   sphinx
 beautifulsoup4==4.12.3
     # via nbconvert
-bigtree==0.22.3
+bigtree==0.23.0
     # via feast (setup.py)
 bleach==6.2.0
     # via nbconvert
@@ -108,7 +108,7 @@ cffi==1.17.1
     #   snowflake-connector-python
 cfgv==3.4.0
     # via pre-commit
-charset-normalizer==3.4.0
+charset-normalizer==3.4.1
     # via
     #   requests
     #   snowflake-connector-python
@@ -132,7 +132,7 @@ comm==0.2.2
     #   ipywidgets
 couchbase==4.3.2
     # via feast (setup.py)
-coverage[toml]==7.6.9
+coverage[toml]==7.6.10
     # via pytest-cov
 cryptography==42.0.8
     # via
@@ -1064,7 +1064,7 @@ uvicorn[standard]==0.34.0
     # via
     #   feast (setup.py)
     #   uvicorn-worker
-uvicorn-worker==0.2.0
+uvicorn-worker==0.3.0
     # via feast (setup.py)
 uvloop==0.21.0
     # via uvicorn

@@ -10,11 +10,11 @@ attrs==24.3.0
     # via
     #   jsonschema
     #   referencing
-bigtree==0.22.3
+bigtree==0.23.0
     # via feast (setup.py)
 certifi==2024.12.14
     # via requests
-charset-normalizer==3.4.0
+charset-normalizer==3.4.1
     # via requests
 click==8.1.8
     # via
@@ -168,7 +168,7 @@ uvicorn[standard]==0.34.0
     # via
     #   feast (setup.py)
     #   uvicorn-worker
-uvicorn-worker==0.2.0
+uvicorn-worker==0.3.0
     # via feast (setup.py)
 uvloop==0.21.0
     # via uvicorn

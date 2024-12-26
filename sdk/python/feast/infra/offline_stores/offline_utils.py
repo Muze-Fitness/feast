@@ -22,7 +22,7 @@ from feast.repo_config import RepoConfig
 from feast.type_map import feast_value_type_to_pa
 from feast.utils import _get_requested_feature_views_to_features_dict, to_naive_utc
 
-DEFAULT_ENTITY_DF_EVENT_TIMESTAMP_COL = "event_timestamp"
+DEFAULT_ENTITY_DF_EVENT_TIMESTAMP_COL = "EVENT_TIME"
 
 
 def infer_event_timestamp_from_entity_df(entity_schema: Dict[str, np.dtype]) -> str:

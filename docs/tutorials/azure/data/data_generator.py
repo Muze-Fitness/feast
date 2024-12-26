@@ -10,7 +10,7 @@ from enum import Enum
 from sqlalchemy import create_engine, DateTime
 from datetime import datetime
 
-DEFAULT_ENTITY_DF_EVENT_TIMESTAMP_COL = "event_timestamp"
+DEFAULT_ENTITY_DF_EVENT_TIMESTAMP_COL = "EVENT_TIME"
 
 
 class EventTimestampType(Enum):
