@@ -45,8 +45,8 @@ build: protos build-java build-docker
 # formerly install-python-ci-dependencies-uv-venv
 # editable install
 install-python-dependencies-dev:
-	uv pip sync sdk/python/requirements/py$(PYTHON_VERSION)-ci-requirements.txt
-	uv pip install --no-deps -e .
+	uv pip sync sdk/python/requirements/py$(PYTHON_VERSION)-ci-requirements.txt -vv
+	uv pip install --no-deps -e -vv .
 
 # Python SDK - system
 # the --system flag installs dependencies in the global python context
